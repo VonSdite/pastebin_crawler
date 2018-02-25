@@ -62,7 +62,11 @@ def get_code(archive, code_fliter=lambda code: True):
 
     soup = BeautifulSoup(html, 'lxml')
     code = soup.find('textarea', attrs={
-                     'id': 'paste_code', 'class': 'paste_code', 'name': 'paste_code'}).get_text()
+                     'id': 'paste_code', 'class': 'paste_code', 'name': 'paste_code'})
+
+    if code == None:
+        return 
+    code = code.get_text()
 
     if code_fliter(code):
         # 使用code_filter来获取你想要的代码
